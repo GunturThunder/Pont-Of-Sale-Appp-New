@@ -10,12 +10,14 @@ module.exports = {
             const order = request.query.order || 'ASC'
             const limit = request.query.limit || 100
             const page = request.query.page || 1
+            const id_category = request.query.id_category || ''
 
 
-            const result = await productModel.getAll(searchName, sort, order, limit, page)
-            const tData = await productModel.getAll(searchName, 'id_product', 'ASC', 1000, 1)
+            const result = await productModel.getAll(searchName, sort, order, limit, page,id_category)
+            const tData = await productModel.getAll(searchName, 'id_product', 'ASC', 1000, 1,'')
             const tPage = Math.ceil(tData.length / limit)
-            console.log(tPage, tData)
+            console.log(tData)
+            // const tPage = Math.ceil(result.length / limit)
             miscHelper.response(response, 200, result, tPage)
             // response.json(result)
         }
@@ -35,10 +37,10 @@ module.exports = {
                 price : request.body.price,
                 stock : request.body.stock,
                 description : request.body.description,
-                image : `http://localhost:4040/upload/${request.file.filename}`,
+                image : `http://20.20.20.147:4040/upload/${request.file.filename}`,
             }
             const result = await productModel.insertProduct(data)
-            miscHelper.response(response, 200, result)
+            miscHelper.response(response, 200, data)
         }
         catch(error){
             console.log(error)
@@ -47,7 +49,7 @@ module.exports = {
     },
     updateProduct: async(request, response)=>{
         try{
-            console.log(request.file)
+            // console.log(request.body)
             const id_product = request.params.id_product
             const data =  {
                 id_product,
@@ -56,7 +58,7 @@ module.exports = {
                 price : request.body.price,
                 stock : request.body.stock,
                 description : request.body.description,
-                image : `http://localhost:4040/upload/${request.file.filename}`,
+                image : `http://20.20.20.147:4040/upload/${request.file.filename}`,
             }
             
             const result = await productModel.updateProduct(data)

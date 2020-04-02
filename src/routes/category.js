@@ -10,6 +10,6 @@ Route
     .get('/', getAll)
     .post('/', insertCategory)
     .patch('/:id_category',updateCategory)
-     .delete('/:id_category', deleteCategory)
+    .delete('/:id_category', deleteCategory)
 
 module.exports = Route

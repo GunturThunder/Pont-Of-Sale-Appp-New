@@ -1,10 +1,10 @@
 const connection = require('../configs/mysql')
 
 module.exports={
-    getAll: (searchName, sort,order, limit, page)=>{
+    getAll: (searchName, sort,order, limit, page,id_category)=>{
         return new Promise((resolve, reject)=>{
             const firstData = ((limit*page)-limit)
-            connection.query(`SELECT product.id_product, category.name as category, product.name, product.price, product.stock, product.description, product.image FROM category,product  WHERE category.id_category=product.id_category AND product.name LIKE'%${searchName}%' ORDER BY ${sort} ${order} LIMIT ${firstData},${limit}`, (error, result)=>{
+            connection.query(`SELECT product.id_product, category.name as category, product.name, product.price, product.stock, product.description, product.image FROM category,product  WHERE category.id_category=product.id_category AND product.name LIKE'%${searchName}%' AND category.name LIKE '%${id_category}%' ORDER BY ${sort} ${order} LIMIT ${firstData},${limit}`, (error, result)=>{
                 if(error) reject(new Error(error))
                 resolve(result)
             })

@@ -24,7 +24,6 @@ module.exports = {
       }
       result.totalPage = page
     }
-
     result.status = status || 200
     result.result = data
 

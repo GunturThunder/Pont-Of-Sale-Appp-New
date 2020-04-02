@@ -27,8 +27,6 @@ module.exports = {
       const salt = helper.generateSalt(18)
       const hashPassword = helper.setPassword(request.body.password, salt)
       const data = {
-        // name: request.body.name,
-        id_user : request.body.id_user,
         name : request.body.name,
         email: request.body.email,
         status: request.body.status,
@@ -39,7 +37,9 @@ module.exports = {
         // updated_at: new Date()
       }
       const result = await userModel.register(data)
-      response.json(result)
+      data.id_user = result.insertId
+
+      helper.response(response, 200, data)
     } catch (error) {
       console.log(error)
     }
@@ -69,5 +69,27 @@ module.exports = {
     } else {
       response.json({ message: 'Login error!' })
     }
-  }
+  },
+  updateUser: async(request, response)=>{
+        try{
+            
+            const id_user = request.params.id_user
+            // console.log(id_category)
+            const data =  {
+                id_user,
+                name : request.body.name,
+                email: request.body.email,
+                status: request.body.status,
+                password: hashPassword.passwordHash,
+                salt: hashPassword.salt
+            }
+            
+            const result = await userModel.updateUser(data)
+            miscHelper.response(response, 200, data)
+        }
+        catch(error){
+            console.log(error)
+            miscHelper.customErrorResponse(response, 404, 'Internal Sever Error!')
+        }
+    },
 }

@@ -25,5 +25,13 @@ getAll: (searchName, sort,order, limit, page)=>{
         resolve(result)
       })
     })
-  }
+  },
+  updateUser: (data)=>{
+        return new Promise((resolve, reject)=>{
+            connection.query('UPDATE user SET ? WHERE id_user = ?', [data,data.id_user], (error, result)=>{
+                if(error) reject(new Error(error))
+                resolve(result)
+            })
+        })
+    },
 }

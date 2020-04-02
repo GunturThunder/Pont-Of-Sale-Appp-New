@@ -11,9 +11,8 @@ Route
     .use('/product', productRouter)
     .use('/category', categoryRouter)
     .use('/user', userRouter)
-    .use('/order', orderRouter)
     .use('/cashier', cashierRouter)
-
+    .use('/order', orderRouter)
     
 
 module.exports = Route
