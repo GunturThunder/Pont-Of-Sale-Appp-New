@@ -6,9 +6,9 @@ const {getAll, insertProduct, updateProduct, deleteProduct} = require('../contro
 
 const { uploadImage } = require('../controllers/upload')
 
-// const { authentication, authorization} = require('../helper/auth')
+const { authentication, authorization} = require('../helper/auth')
 Route
-    .get('/',/*authentication, authorization, */getAll)
+    .get('/',authentication, authorization, getAll)
     .post('/', uploadImage, insertProduct)
     .patch('/:id_product',uploadImage, updateProduct)
     .delete('/:id_product', deleteProduct)

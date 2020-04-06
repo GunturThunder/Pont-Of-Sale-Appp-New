@@ -37,7 +37,7 @@ module.exports = {
                 price : request.body.price,
                 stock : request.body.stock,
                 description : request.body.description,
-                image : `http://20.20.20.147:4040/upload/${request.file.filename}`,
+                image : `http://54.175.159.200/upload/${request.file.filename}`,
             }
             const result = await productModel.insertProduct(data)
             miscHelper.response(response, 200, data)
@@ -58,7 +58,7 @@ module.exports = {
                 price : request.body.price,
                 stock : request.body.stock,
                 description : request.body.description,
-                image : `http://20.20.20.147:4040/upload/${request.file.filename}`,
+                image : `http://54.175.159.200/upload/${request.file.filename}`,
             }
             
             const result = await productModel.updateProduct(data)
