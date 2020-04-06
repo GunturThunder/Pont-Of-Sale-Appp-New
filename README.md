@@ -94,5 +94,5 @@ JWT_KEY = 'thunder'
 	
 ## Related Project
 * [`AsaUlu-FrontEnd`](https://github.com/GunturThunder/Pont-Of-Sale-App-Using-ReactJs-Redux.git)
-* [`AsaUlu-Mobile`](https://github.com/misrudin/PosReactNative.git)
+* [`AsaUlu-Mobile`](https://github.com/GunturThunder/AsaUlu-App-With-ReactNative.git)
 </section>
